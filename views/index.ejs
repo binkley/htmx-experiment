@@ -4,95 +4,12 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>HTMX Experiment</title>
+        <link rel="stylesheet" href="/styles.css" />
         <script
             src="https://unpkg.com/htmx.org@1.9.10"
             integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
             crossorigin="anonymous"
         ></script>
-        <style>
-            body {
-                font-family:
-                    system-ui,
-                    -apple-system,
-                    sans-serif;
-                max-width: 600px;
-                margin: 2rem auto;
-                padding: 0 1rem;
-                color: #333;
-            }
-            .todo-item {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 0.75rem 0;
-                border-bottom: 1px solid #eee;
-            }
-            .todo-item.htmx-swapping {
-                opacity: 0;
-                transition: opacity 0.3s ease-out;
-            }
-            button,
-            input[type='text'],
-            input[type='search'] {
-                padding: 0.5rem;
-                font-size: 1rem;
-            }
-            form {
-                display: flex;
-                gap: 0.5rem;
-                margin-bottom: 1rem;
-            }
-            input[type='text'] {
-                flex-grow: 1;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
-            input[type='search'] {
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                padding: 0.3rem 0.5rem;
-            }
-            .header-actions {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 1rem;
-                padding-bottom: 1rem;
-                border-bottom: 2px solid #eee;
-            }
-            .htmx-indicator {
-                opacity: 0;
-                transition: opacity 200ms ease-in;
-            }
-            .htmx-request .htmx-indicator {
-                opacity: 1;
-            }
-            .htmx-request.htmx-indicator {
-                opacity: 1;
-            }
-            .spinner {
-                margin-left: 0.5rem;
-                font-size: 0.9rem;
-            }
-            .todo-label {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                flex-grow: 1;
-                cursor: pointer;
-            }
-            .todo-label.completed {
-                text-decoration: line-through;
-                color: #888;
-            }
-            .delete-btn {
-                color: red;
-                border: 1px solid red;
-                background: transparent;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-        </style>
     </head>
     <body>
         <h1>HTMX Experiment</h1>
