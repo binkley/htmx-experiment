@@ -3,3 +3,4 @@ coverage
 package-lock.json
 
 views/components/button.ejs
+public/styles.css

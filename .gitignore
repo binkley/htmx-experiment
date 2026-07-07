@@ -1,3 +1,4 @@
 .envrc
 coverage/
 node_modules/
+public/styles.css
