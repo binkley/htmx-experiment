@@ -10,7 +10,6 @@ align="right" width="10%" height="auto"/>
 [![ci](https://img.shields.io/github/actions/workflow/status/binkley/htmx-experiment/ci.yml?branch=main&label=ci)](https://github.com/binkley/htmx-experiment/actions/workflows/ci.yml)
 [![issues](https://img.shields.io/github/issues/binkley/htmx-experiment?label=issues)](https://github.com/binkley/htmx-experiment/issues)
 [![pull requests](https://img.shields.io/github/issues-pr/binkley/htmx-experiment?label=pull%20requests)](https://github.com/binkley/htmx-experiment/pulls)
-[![node version](https://img.shields.io/node/v/@binkley/htmx-experiment.svg)](https://nodejs.org)
 
 Kick the tires on HTMX. This is a demonstration project showcasing advanced
 HTMX capabilities powered by a Node.js Express backend and EJS server-side
