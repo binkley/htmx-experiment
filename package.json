@@ -14,7 +14,10 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "validate:commit": "lint-staged"
+    "validate:commit": "lint-staged",
+    "build:css": "tailwindcss -i ./styles/input.css -o ./public/styles.css",
+    "watch:css": "tailwindcss -i ./styles/input.css -o ./public/styles.css --watch",
+    "dev": "npm-run-all --parallel watch:css start"
   },
   "repository": {
     "type": "git",
@@ -30,14 +33,17 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@tailwindcss/cli": "^4.3.2",
     "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.7.0",
     "husky": "^9.1.7",
     "jest": "^30.4.2",
     "lint-staged": "^17.0.8",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.9.4",
-    "supertest": "^7.2.2"
+    "supertest": "^7.2.2",
+    "tailwindcss": "^4.3.2"
   },
   "engines": {
     "node": ">=26.0.0"

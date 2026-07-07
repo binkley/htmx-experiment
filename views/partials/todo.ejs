@@ -1,6 +1,11 @@
 <% const isCompleted = todo.completed; %>
-<li class="todo-item" id="todo-<%= todo.id %>">
-    <label class="todo-label <%= isCompleted ? 'completed' : '' %>">
+<li
+    class="flex items-center justify-between py-3 border-b border-gray-200 <%= isCompleted ? 'opacity-75' : '' %>"
+    id="todo-<%= todo.id %>"
+>
+    <label
+        class="flex items-center gap-3 grow cursor-pointer <%= isCompleted ? 'line-through text-gray-500' : 'text-gray-800' %>"
+    >
         <% if (isCompleted) { %>
         <input
             type="checkbox"
@@ -8,6 +13,7 @@
             hx-target="#todo-<%= todo.id %>"
             hx-swap="outerHTML"
             checked
+            class="w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer"
         />
         <% } else { %>
         <input
@@ -15,6 +21,7 @@
             hx-patch="/todos/<%= todo.id %>/toggle"
             hx-target="#todo-<%= todo.id %>"
             hx-swap="outerHTML"
+            class="w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer"
         />
         <% } %>
         <span
@@ -22,16 +29,12 @@
             hx-target="#todo-<%= todo.id %>"
             hx-swap="outerHTML"
             title="Click to edit text"
+            class="hover:text-blue-600 transition-colors"
         >
             <%= todo.title %>
         </span>
     </label>
-    <button
-        hx-delete="/todos/<%= todo.id %>"
-        hx-target="#todo-<%= todo.id %>"
-        hx-swap="outerHTML"
-        class="delete-btn"
-    >
-        Delete
-    </button>
+    <%- include('../components/button', { variant: 'danger', className: 'ml-4', text: 'Delete',
+    attributes: `hx-delete="/todos/${todo.id}" hx-target="#todo-${todo.id}" hx-swap="outerHTML"` })
+    %>
 </li>
