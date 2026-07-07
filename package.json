@@ -9,8 +9,12 @@
   "scripts": {
     "start": "node index.js",
     "test": "jest --coverage --coverageThreshold='{\"global\":{\"branches\":100,\"functions\":100,\"lines\":100,\"statements\":100}}'",
-    "validate:push": "npm run test",
-    "prepare": "husky"
+    "validate:push": "npm run format:check && npm run lint && npm run test",
+    "prepare": "husky",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "validate:commit": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -25,11 +29,26 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.6.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.7.0",
     "husky": "^9.1.7",
     "jest": "^30.4.2",
+    "lint-staged": "^17.0.8",
+    "prettier": "^3.9.4",
     "supertest": "^7.2.2"
   },
   "engines": {
     "node": ">=26.0.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml,html,ejs}": [
+      "prettier --write"
+    ]
   }
 }

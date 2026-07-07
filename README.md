@@ -18,7 +18,7 @@ templating.
 ## Features Demonstrated
 
 - **Active Search:** Real-time filtering with `hx-trigger="keyup changed
-  delay:300ms"` and loading indicators (`hx-indicator`).
+delay:300ms"` and loading indicators (`hx-indicator`).
 - **Inline Editing:** Click-to-edit functionality using `hx-get` and `hx-put`
   to seamlessly swap forms and text.
 - **Out-of-Band (OOB) Swaps:** Global state updates (like the Total/Completed
@@ -31,14 +31,14 @@ templating.
 
 ## Setup & Run
 
-1. Install dependencies: ```bash npm install ```
-2. Start the server: ```bash npm start ```
+1. Install dependencies: `bash npm install `
+2. Start the server: `bash npm start `
 3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Testing
 
 This project enforces a strict 100% test coverage threshold using Jest and
-Supertest. 
+Supertest.
 
-To run the validation suite (which runs before pushing): ```bash npm run
-validate:push ```
+To run the validation suite (which runs before pushing): `bash npm run
+validate:push `
