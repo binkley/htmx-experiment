@@ -28,7 +28,7 @@
         <%- include('partials/stats', { todos: todos }) %>
 
         <div>
-            <input type="search" name="q" placeholder="Search tasks..." 
+            <input type="search" name="q" placeholder="Search tasks..." autocomplete="off"
                    hx-get="/todos" 
                    hx-trigger="keyup changed delay:300ms, search" 
                    hx-target="#todo-list"
