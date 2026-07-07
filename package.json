@@ -1,6 +1,6 @@
 {
   "name": "htmx-experiment",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Kick the tires on HTMLX",
   "main": "index.js",
   "directories": {
@@ -8,13 +8,13 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "jest --coverage --coverageThreshold='{\"global\":{\"branches\":80,\"functions\":80,\"lines\":80,\"statements\":80}}'",
+    "test": "jest --coverage --coverageThreshold='{\"global\":{\"branches\":100,\"functions\":100,\"lines\":100,\"statements\":100}}'",
     "validate:push": "npm run test",
     "prepare": "husky"
   },
   "repository": {
     "type": "git",
-    "url": "git@personal:binkley/htmx-experiment.git"
+    "url": "git@github.com:binkley/htmx-experiment.git"
   },
   "keywords": [],
   "author": "",
@@ -28,5 +28,8 @@
     "husky": "^9.1.7",
     "jest": "^30.4.2",
     "supertest": "^7.2.2"
+  },
+  "engines": {
+    "node": ">=26.0.0"
   }
 }
