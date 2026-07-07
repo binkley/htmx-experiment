@@ -36,12 +36,38 @@
             </span>
         </label>
         <button
-            hx-delete="/todos/<%= todo.id %>"
-            hx-target="#todo-<%= todo.id %>"
-            hx-swap="outerHTML"
             class="btn btn-error btn-sm btn-outline ml-4"
+            onclick="document.getElementById('delete-modal-<%= todo.id %>').showModal()"
         >
             Delete
         </button>
+
+        <!-- daisyUI Modal for Delete Confirmation -->
+        <dialog id="delete-modal-<%= todo.id %>" class="modal">
+            <div class="modal-box">
+                <h3 class="font-bold text-lg text-base-content">Confirm Deletion</h3>
+                <p class="py-4 text-base-content">
+                    Are you sure you want to delete "<strong><%= todo.title %></strong>"? This
+                    action cannot be undone.
+                </p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal natively -->
+                        <button class="btn btn-ghost">Cancel</button>
+                    </form>
+                    <button
+                        hx-delete="/todos/<%= todo.id %>"
+                        hx-target="#todo-<%= todo.id %>"
+                        hx-swap="outerHTML"
+                        class="btn btn-error"
+                    >
+                        Yes, Delete
+                    </button>
+                </div>
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
+        </dialog>
     </div>
 </li>
