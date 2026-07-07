@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJS + HTMX Demo</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; max-width: 600px; margin: 2rem auto; padding: 0 1rem; color: #333; }
+        .todo-item { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid #eee; }
+        .todo-item.htmx-swapping { opacity: 0; transition: opacity 0.3s ease-out; }
+        button, input[type="text"], input[type="search"] { padding: 0.5rem; font-size: 1rem; }
+        form { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+        input[type="text"] { flex-grow: 1; border: 1px solid #ccc; border-radius: 4px;}
+        input[type="search"] { border: 1px solid #ccc; border-radius: 4px; padding: 0.3rem 0.5rem; }
+        .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 2px solid #eee; }
+        .htmx-indicator { opacity: 0; transition: opacity 200ms ease-in; }
+        .htmx-request .htmx-indicator { opacity: 1; }
+        .htmx-request.htmx-indicator { opacity: 1; }
+        .spinner { margin-left: 0.5rem; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <h1>EJS + HTMX Demo</h1>
+    
+    <div class="header-actions">
+        <!-- Out-of-Band Target injected by EJS directly on load -->
+        <%- include('partials/stats', { todos: todos }) %>
+
+        <div>
+            <input type="search" name="q" placeholder="Search tasks..." 
+                   hx-get="/todos" 
+                   hx-trigger="keyup changed delay:300ms, search" 
+                   hx-target="#todo-list"
+                   hx-indicator="#search-spinner">
+            <span id="search-spinner" class="htmx-indicator spinner">⏳ Searching...</span>
+        </div>
+    </div>
+
+    <form hx-post="/todos" 
+          hx-target="#todo-list" 
+          hx-swap="beforeend" 
+          hx-on::after-request="if(event.detail.successful) this.reset()">
+        <input type="text" name="title" placeholder="What needs to be done?" required>
+        <button type="submit" style="cursor: pointer;">Add Todo</button>
+    </form>
+
+    <!-- By using EJS, we Server-Side Render the initial state, improving perceived performance -->
+    <ul id="todo-list" style="list-style: none; padding: 0; margin: 0;">
+        <% todos.forEach(function(todo) { %>
+            <%- include('partials/todo', { todo: todo }) %>
+        <% }); %>
+    </ul>
+</body>
+</html>

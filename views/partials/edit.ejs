@@ -1,0 +1,7 @@
+<li class="todo-item" id="todo-<%= todo.id %>">
+    <form hx-put="/todos/<%= todo.id %>" hx-target="#todo-<%= todo.id %>" hx-swap="outerHTML" style="margin: 0; display: flex; width: 100%; gap: 0.5rem;">
+        <input type="text" name="title" value="<%= todo.title %>" autofocus style="flex-grow: 1;">
+        <button type="submit" style="cursor: pointer;">Save</button>
+        <button type="button" hx-get="/todos/<%= todo.id %>" hx-target="#todo-<%= todo.id %>" hx-swap="outerHTML" style="cursor: pointer;">Cancel</button>
+    </form>
+</li>

@@ -1,0 +1,18 @@
+<li class="todo-item" id="todo-<%= todo.id %>">
+    <label style="<%= todo.completed ? 'text-decoration: line-through; color: #888;' : '' %> display: flex; align-items: center; gap: 0.5rem; flex-grow: 1; cursor: pointer;">
+        <input type="checkbox" 
+               hx-patch="/todos/<%= todo.id %>/toggle" 
+               hx-target="#todo-<%= todo.id %>" 
+               hx-swap="outerHTML" 
+               <%= todo.completed ? 'checked' : '' %>>
+        <span hx-get="/todos/<%= todo.id %>/edit" hx-target="#todo-<%= todo.id %>" hx-swap="outerHTML" title="Click to edit text">
+            <%= todo.title %>
+        </span>
+    </label>
+    <button hx-delete="/todos/<%= todo.id %>" 
+            hx-target="#todo-<%= todo.id %>" 
+            hx-swap="outerHTML"
+            style="color: red; border: 1px solid red; background: transparent; border-radius: 4px; cursor: pointer;">
+        Delete
+    </button>
+</li>
