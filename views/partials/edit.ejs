@@ -1,23 +1,28 @@
-<li
-    class="flex items-center justify-between py-3 border-b border-gray-200"
-    id="todo-<%= todo.id %>"
->
-    <form
-        hx-put="/todos/<%= todo.id %>"
-        hx-target="#todo-<%= todo.id %>"
-        hx-swap="outerHTML"
-        class="flex gap-2 w-full m-0"
-    >
-        <input
-            type="text"
-            name="title"
-            value="<%= todo.title %>"
-            autofocus
-            class="border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 px-3 py-1.5 grow"
-        />
-        <%- include('../components/button', { variant: 'success', type: 'submit', text: 'Save' }) %>
-        <%- include('../components/button', { variant: 'secondary', type: 'button', text: 'Cancel',
-        attributes: `hx-get="/todos/${todo.id}" hx-target="#todo-${todo.id}" hx-swap="outerHTML"` })
-        %>
-    </form>
+<li class="rounded-lg mb-1" id="todo-<%= todo.id %>">
+    <div class="flex items-center justify-between w-full p-2">
+        <form
+            hx-put="/todos/<%= todo.id %>"
+            hx-target="#todo-<%= todo.id %>"
+            hx-swap="outerHTML"
+            class="flex gap-2 w-full m-0"
+        >
+            <input
+                type="text"
+                name="title"
+                value="<%= todo.title %>"
+                autofocus
+                class="input input-sm input-bordered grow"
+            />
+            <button type="submit" class="btn btn-success btn-sm">Save</button>
+            <button
+                type="button"
+                hx-get="/todos/<%= todo.id %>"
+                hx-target="#todo-<%= todo.id %>"
+                hx-swap="outerHTML"
+                class="btn btn-ghost btn-sm"
+            >
+                Cancel
+            </button>
+        </form>
+    </div>
 </li>

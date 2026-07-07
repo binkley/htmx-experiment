@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cupcake">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,51 +23,61 @@
             }
         </style>
     </head>
-    <body class="font-sans max-w-[600px] mx-auto my-8 px-4 text-gray-800">
-        <h1 class="text-3xl font-bold mb-6">HTMX Experiment</h1>
+    <body class="bg-base-200 min-h-screen py-10 px-4">
+        <main class="max-w-2xl mx-auto">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h1 class="card-title text-3xl font-bold mb-6 text-primary">HTMX Experiment</h1>
 
-        <div class="flex justify-between items-center mb-4 pb-4 border-b-2 border-gray-100">
-            <!-- Out-of-Band Target injected by EJS directly on load -->
-            <%- include('partials/stats', { todos: todos }) %>
+                    <div
+                        class="flex justify-between items-center mb-6 pb-6 border-b border-base-300"
+                    >
+                        <!-- Out-of-Band Target injected by EJS directly on load -->
+                        <%- include('partials/stats', { todos: todos }) %>
 
-            <div class="flex items-center">
-                <input
-                    type="search"
-                    name="q"
-                    placeholder="Search tasks..."
-                    autocomplete="off"
-                    hx-get="/todos"
-                    hx-trigger="keyup changed delay:300ms, search"
-                    hx-target="#todo-list"
-                    hx-indicator="#search-spinner"
-                    class="border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 px-2 py-1"
-                />
-                <span id="search-spinner" class="htmx-indicator ml-2 text-sm">⏳ Searching...</span>
+                        <div class="flex items-center gap-2">
+                            <input
+                                type="search"
+                                name="q"
+                                placeholder="Search tasks..."
+                                autocomplete="off"
+                                hx-get="/todos"
+                                hx-trigger="keyup changed delay:300ms, search"
+                                hx-target="#todo-list"
+                                hx-indicator="#search-spinner"
+                                class="input input-sm input-bordered w-full max-w-xs"
+                            />
+                            <span
+                                id="search-spinner"
+                                class="htmx-indicator loading loading-spinner loading-sm text-primary"
+                            ></span>
+                        </div>
+                    </div>
+
+                    <form
+                        hx-post="/todos"
+                        hx-target="#todo-list"
+                        hx-swap="beforeend"
+                        hx-on::after-request="if(event.detail.successful) this.reset()"
+                        class="flex gap-2 mb-6"
+                    >
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder="What needs to be done?"
+                            required
+                            class="input input-bordered grow"
+                        />
+                        <button type="submit" class="btn btn-primary">Add Todo</button>
+                    </form>
+
+                    <!-- By using EJS, we Server-Side Render the initial state, improving perceived performance -->
+                    <ul id="todo-list" class="menu bg-base-100 rounded-box p-0">
+                        <% todos.forEach(function(todo) { %> <%- include('partials/todo', { todo:
+                        todo }) %> <% }); %>
+                    </ul>
+                </div>
             </div>
-        </div>
-
-        <form
-            hx-post="/todos"
-            hx-target="#todo-list"
-            hx-swap="beforeend"
-            hx-on::after-request="if(event.detail.successful) this.reset()"
-            class="flex gap-2 mb-4"
-        >
-            <input
-                type="text"
-                name="title"
-                placeholder="What needs to be done?"
-                required
-                class="border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 px-3 py-2 text-base grow"
-            />
-            <%- include('components/button', { variant: 'primary', type: 'submit', text: 'Add Todo'
-            }) %>
-        </form>
-
-        <!-- By using EJS, we Server-Side Render the initial state, improving perceived performance -->
-        <ul id="todo-list" class="list-none p-0 m-0">
-            <% todos.forEach(function(todo) { %> <%- include('partials/todo', { todo: todo }) %> <%
-            }); %>
-        </ul>
+        </main>
     </body>
 </html>

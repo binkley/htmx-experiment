@@ -17,7 +17,7 @@ describe('Advanced HTMX Todo API', () => {
         const res = await request(app).get('/todos');
         expect(res.status).toBe(200);
         expect(res.text).toContain('id="todo-stats"');
-        expect(res.text).toMatch(/Total:<\/strong>\s*0/);
+        expect(res.text).toMatch(/Total: 0/);
     });
 
     it('GET /todos?q=... should filter results', async () => {
@@ -44,7 +44,7 @@ describe('Advanced HTMX Todo API', () => {
         expect(res.status).toBe(200);
         expect(res.text).toContain('Test Todo');
         expect(res.text).toContain('id="todo-stats"');
-        expect(res.text).toMatch(/Total:<\/strong>\s*1/);
+        expect(res.text).toMatch(/Total: 1/);
     });
 
     it('POST /todos should return 400 if title is empty', async () => {
@@ -129,12 +129,12 @@ describe('Advanced HTMX Todo API', () => {
         let res = await request(app).patch('/todos/1/toggle');
         expect(res.status).toBe(200);
         expect(res.text).toContain('checked');
-        expect(res.text).toMatch(/Completed:<\/strong>\s*1/);
+        expect(res.text).toMatch(/Completed: 1/);
 
         res = await request(app).patch('/todos/1/toggle');
         expect(res.status).toBe(200);
         expect(res.text).not.toContain('checked');
-        expect(res.text).toMatch(/Completed:<\/strong>\s*0/);
+        expect(res.text).toMatch(/Completed: 0/);
 
         const res404 = await request(app).patch('/todos/999/toggle');
         expect(res404.status).toBe(404);
@@ -148,7 +148,7 @@ describe('Advanced HTMX Todo API', () => {
 
         const res = await request(app).delete('/todos/1');
         expect(res.status).toBe(200);
-        expect(res.text).toMatch(/Total:<\/strong>\s*0/);
+        expect(res.text).toMatch(/Total: 0/);
         expect(res.text).not.toContain('To delete');
     });
 });

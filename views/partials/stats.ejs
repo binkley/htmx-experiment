@@ -1,4 +1,6 @@
-<span id="todo-stats" hx-swap-oob="true">
-    <strong>Total:</strong>
-    <%= todos.length %> | <strong>Completed:</strong> <%= todos.filter(t => t.completed).length %>
-</span>
+<div id="todo-stats" hx-swap-oob="true" class="flex gap-2">
+    <div class="badge badge-neutral badge-lg">Total: <%= todos.length %></div>
+    <div class="badge badge-primary badge-lg">
+        Completed: <%= todos.filter(t => t.completed).length %>
+    </div>
+</div>
